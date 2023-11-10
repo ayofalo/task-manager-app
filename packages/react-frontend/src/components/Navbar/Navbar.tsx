@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       <MDBNavbar expand="lg" dark bgColor="primary" className="navbar">
         <MDBContainer fluid>
           <MDBNavbarBrand href="#" style={{ fontSize: "30px" }}>
-            News Archive
+            Task Manager
           </MDBNavbarBrand>
           <MDBNavbarToggler
             type="button"

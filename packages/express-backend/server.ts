@@ -14,7 +14,7 @@ const app = express();
 // Setup Swagger
 setupSwagger(app);
 
-app.use(cors({ origin: "http://localhost:3000" })); // Allowing all origins by default.
+app.use(cors({})); // Allowing all origins by default.
 app.use(express.json({ limit: "50mb" })); // Parses incoming JSON requests.
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 

@@ -1,57 +1,76 @@
 import { TodoType } from "../types";
+import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 
 const API_URL = "http://localhost:3001";
 
+type SetDataFunction = Dispatch<SetStateAction<TodoType[]>>;
+
+async function httpGetTasks(
+  setData: SetDataFunction,
+  setLoading: Dispatch<SetStateAction<boolean>>
+) {
+  try {
+    const startTime = Date.now();
+    const response = await axios.get(` ${API_URL}/api/tasks/`);
+    setData(response.data);
+
+    const elapsedTime = Date.now() - startTime; // Calculate elapsed time
+
+    // If the request takes more than 1 minutes, show loading
+    if (elapsedTime > 60000) {
+      setLoading(true);
+    }
+  } catch (error) {
+    console.log(error);
+    console.error("Error during fetching:", error);
+  } finally {
+    setLoading(false);
+  }
+}
+
 async function httpCreateTasks(data: {}) {
   try {
-    const response = await fetch(`${API_URL}/tasks/`, {
-      method: "post",
+    const response = await axios.post(` ${API_URL}/api/tasks/`, data, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     });
-
-    if (!response.ok) {
-      // Handle non-successful response (HTTP error)
-      return {
-        ok: false,
-        status: response.status,
-        statusText: response.statusText,
-      };
-    }
-
-    // Parse the response body as JSON, assuming it's JSON data
-    const responseData = await response.json();
-
+    console.log(response);
     return {
       ok: true,
-      data: responseData,
+      data: response.data,
     };
-  } catch (err) {
-    // Handle other errors (e.g., network issues)
-    console.error("Error during HTTP request:", err);
-
-    return {
-      ok: false,
-      error: "Network error",
-    };
-  }
-}
-
-async function httpUpdateStatus(id: number, status: boolean) {
-  try {
-    const data = {
-      completed: status,
-    };
-    const response = await axios.put(
-      `http://localhost:3001/api/tasks/${id}`,
-      data
-    );
   } catch (error) {
-    // setError("Something went wrong while fetching data.");
+    throw error;
   }
 }
 
-export { httpCreateTasks, httpUpdateStatus };
+async function httpUpdateStatus(
+  id: number,
+  data: {},
+  setIsLoading: (isLoading: boolean) => void
+) {
+  try {
+    setIsLoading(true);
+
+    const response = await axios.put(`${API_URL}/api/tasks/${id}`, data);
+    return {
+      ok: true,
+      data: response.data,
+    };
+  } catch (error) {
+    throw error;
+  } finally {
+    setIsLoading(false);
+  }
+}
+
+async function httpDeleteTasks(id: number) {
+  try {
+    await axios.delete(`${API_URL}/api/tasks/${id}`);
+  } catch (error) {
+    throw error;
+  }
+}
+export { httpGetTasks, httpCreateTasks, httpUpdateStatus, httpDeleteTasks };

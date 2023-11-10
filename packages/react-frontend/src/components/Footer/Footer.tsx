@@ -63,21 +63,21 @@ const Footer: FC = () => {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4 text-white">
                 <MDBIcon color="white" icon="gem" className="me-3" />
-                News-archive Company
+                Task Manager
               </h6>
-              <p>Learn about your News-archive</p>
+              <p>Learn about your Task Manager</p>
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Products</h6>
               <p>
                 <a href="#!" className="text-reset">
-                  News-archive test 1.0
+                  Task Manager test 1.0
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  News-archive test 2.0
+                  Task Manager test 2.0
                 </a>
               </p>
             </MDBCol>
@@ -86,7 +86,7 @@ const Footer: FC = () => {
               <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
                 <a href="#!" className="text-reset">
-                  News-archive test 1.0
+                  Task Managertest 1.0
                 </a>
               </p>
               <p>
@@ -94,7 +94,7 @@ const Footer: FC = () => {
                   href="https://www.facebook.com/your-facebook-page"
                   className="text-reset"
                 >
-                  News-archive test 2.0
+                  Task Manager test 2.0
                 </a>
               </p>
             </MDBCol>
@@ -120,7 +120,7 @@ const Footer: FC = () => {
       >
         © 2021 Copyright:
         <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
-          News-archive.com
+          Task Manager.com
         </a>
       </div>
     </MDBFooter>
