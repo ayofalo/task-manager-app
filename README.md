@@ -1,4 +1,4 @@
-# My-News-App Project
+# Task Manager App Project
 
 ## Table of Contents
 
@@ -17,14 +17,14 @@
 
 ## Introduction
 
-My-news-app
+Task Manager App
 
-This is a web application that helps users to query archives containing historical news. The users can search by specifying a search query, To and From Published dates and Order of results. Each article shows the title, sourcename, description, image and when the article was published.
+This is a web application that helps users to manage tasks. The application should allow users to create, read, update, and delete tasks.
 
 Technologies used
 
 - Frontend: ReactJS with Material UI using Typescript
-- Backend: NodeJS & RestAPI & Expressjs & using Typescript
+- Backend: NodeJS & RestAPI & Express & using Typescript
 - REST API documentation: Swagger UI
 - Testing: Jest, React testing library, Supertest & MSW
 - Monorepo management: Lerna was used
@@ -32,6 +32,16 @@ Technologies used
 - Containerization - Docker
 
 ## Features
+
+The backend service has four major endpoints implemented
+
+GET "api/tasks": This endpoint fetches all tasks created.
+
+POST "/api/tasks": This endpoint allows users to create a task and store it in the database. The request is formed using the task, completion status and task number.
+
+PUT "/api/tasks/:taskNumber": This endpoint allows users to update a task using the parametized task number
+
+DELETE "/api/tasks/:taskNumber": This endpoint allows users to delete a task using the parametized task number
 
 ## Getting Started
 
@@ -48,14 +58,14 @@ Before getting started, ensure that you have the following software installed on
 npm install -g typescript
 ```
 
-Before you start the application, you need to set up an environment variable to store your API key. Here's how you can do it:
+Before you start the application, you need to set up an environment variable to store your MONGO URI key. Here's how you can do it:
 
 ```bash
 PORT = 3001
-VALID_API_KEY="YOUR API KEY"
+MONGO_URI="Your Key"
 ```
 
-Create a file called `.env` in express-backend folder of the project with the environmental variables above. Replace "YOUR API KEY" with your key.
+Create a file called `.env` in express-backend folder of the project with the environmental variables above. Replace "YOUR KEY" with your MONGO_URI.
 
 ### Installation
 
@@ -64,13 +74,13 @@ Step-by-step guide on how to install the project and its dependencies.
 1. Clone the repository to your local machine using Git:
 
 ```bash
-git clone https://github.com/ayofalo/my-news-app.git
+git clone https://github.com/ayofalo/task-manager-app.git
 ```
 
 2. Navigate to the project directory
 
 ```bash
-cd my-news-app
+cd task-manager-app
 ```
 
 3. Install the project dependencies using NPM(Node Package Manager):
@@ -82,7 +92,7 @@ npm install
 4. Navigate to the directory of the react-frontend and express-backend as shown below and install corresponding dependencies
 
 ```bash
-cd my-news-app/packages/react-frontend
+cd task-manager-app/packages/react-frontend
 ```
 
 ```bash
@@ -90,7 +100,7 @@ npm install
 ```
 
 ```bash
-cd my-news-app/packages/express-backend
+cd task-manager-app/packages/express-backend
 ```
 
 ```bash
@@ -102,7 +112,7 @@ npm install
 Once you have installed the dependencies, you can start the web application (Frontend and Backend concurrently) using
 
 ```bash
-cd my-news-app
+cd task-manager-app
 ```
 
 ```bash
@@ -144,7 +154,7 @@ npm run test
 navigate to the root directory
 
 ```bash
-cd my-news-app
+cd task-manager-app
 docker-compose up
 
 ```
@@ -170,7 +180,7 @@ http://localhost:3001/api-docs/#/default/get_api_tasks
 - Using the API: Refer to the Swagger API documentation at http://localhost:3001/api-docs for a detailed list of available endpoints and how to interact with them.
 
 - Troubleshooting
-  If you encounter any issues or have questions, please feel free to reach out to us by creating an issue on our GitHub repository: https://github.com/ayofalo/my-news-app/issues.
+  If you encounter any issues or have questions, please feel free to reach out to us by creating an issue on our GitHub repository: https://github.com/ayofalo/task-manager-app/issues.
 
 ### License
 
