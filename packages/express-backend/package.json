@@ -1,17 +1,14 @@
 {
   "name": "express-backend",
   "version": "1.0.0",
-  "description": "Backend for my-news-app",
+  "description": "Backend for taskmanager-app",
   "main": "dist/server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
     "build": "tsc",
     "start": "npm run build && node dist/server.js",
     "server": "npm run build && nodemon dist/server.js",
-    "client": "npm start --prefix client",
     "test-watch": "jest --watch",
-    "test": "jest --watchAll --no-cache --detectOpenHandles",
-    "dev": "concurrently \"npm run server\" \"npm run test:watch\""
+    "test": "jest --watchAll --no-cache --detectOpenHandles"
   },
   "author": "Ayodele",
   "license": "MIT",
