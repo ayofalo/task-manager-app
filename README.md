@@ -160,7 +160,7 @@ docker-compose stop
 Access API documentation via Swagger UI using the link below after starting up the application
 
 ```bash
-http://localhost:3001/api-docs/#/default/get_api_articles
+http://localhost:3001/api-docs/#/default/get_api_tasks
 ```
 
 ### Usage
