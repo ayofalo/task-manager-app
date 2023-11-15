@@ -8,22 +8,23 @@ type SetDataFunction = Dispatch<SetStateAction<TodoType[]>>;
 
 async function httpGetTasks(
   setData: SetDataFunction,
-  setLoading: Dispatch<SetStateAction<boolean>>
+  setLoading: Dispatch<SetStateAction<boolean>>,
+  setError: Dispatch<SetStateAction<string>>
 ) {
   try {
     const startTime = Date.now();
-    const response = await axios.get(` ${API_URL}/api/tasks/`);
+    const response = await axios.get(`${API_URL}/api/tasks/`);
     setData(response.data);
 
     const elapsedTime = Date.now() - startTime; // Calculate elapsed time
 
-    // If the request takes more than 1 minutes, show loading
+    // If the request takes more than 1 minute, show loading
     if (elapsedTime > 60000) {
       setLoading(true);
     }
   } catch (error) {
-    console.log(error);
     console.error("Error during fetching:", error);
+    setError(`${error}`); // Set the error state with the error message
   } finally {
     setLoading(false);
   }

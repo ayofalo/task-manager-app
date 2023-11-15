@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -62,6 +62,7 @@ const TodoList: React.FC = () => {
         completed: status,
       };
       await httpUpdateStatus(id, data, setIsLoading);
+
       refreshData();
     } catch (error) {
       console.error("Error during handleClick:", error);
@@ -92,10 +93,14 @@ const TodoList: React.FC = () => {
       window.alert("Task delete failed. Please try again.");
     }
   };
+  const memoizedRefreshData = useCallback(() => {
+    refreshData();
+  }, [refreshData]);
 
   useEffect(() => {
-    refreshData();
-  }, [isEdited]);
+    memoizedRefreshData();
+  }, [isEdited, memoizedRefreshData]);
+
   return (
     <Container component="main" className={styles.container}>
       <Box component="form" noValidate autoComplete="off">
@@ -118,6 +123,14 @@ const TodoList: React.FC = () => {
           {isEdited ? "Edit Task" : "Add Task"}
         </Button>
       </Box>
+      {error && (
+        <div style={{ marginTop: "50px", color: "red" }}>
+          Error Fetching Data
+        </div>
+      )}
+      {isLoading && (
+        <div style={{ marginTop: "50px", color: "red" }}>Loading Data</div>
+      )}
       {loading ? (
         <CircularProgress />
       ) : (
@@ -159,5 +172,4 @@ const TodoList: React.FC = () => {
     </Container>
   );
 };
-
 export default TodoList;
